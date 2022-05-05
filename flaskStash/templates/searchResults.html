@@ -1,0 +1,82 @@
+{% extends 'resultsTemplate.html' %}
+
+{% block head %}
+<title>Mu Stash || Search Results</title>
+{% endblock %}
+
+
+
+{% block body %}
+{% block content %}
+
+{% if exists1==True %}
+    {% if exists2==False %}
+        {% if page!=1 %}
+            {{ query }}
+       
+        {% endif %}    
+    {% elif exists2==True %}
+        {% if exists3==False %}
+            {% if page!=1 %}
+                {{ query }}
+            {% endif %}    
+        {% elif exists3==True %}
+            {% if exists4==False %}
+                {% if page!=1 %}
+                    {{ query }}
+                {% endif %}    
+            {% elif exists4==True %}
+                {% if exists5==False %}
+                    {% if page!=1 %}
+
+                    {% endif %}    
+                {% elif exists5==True %}
+                    {% if exists6==False %}
+                        {% if page!=1 %}
+
+                        {% endif %}    
+                    {% elif exists6==True %}
+                        {% if exists7==False %}
+                            {% if page!=1 %}
+
+                            {% endif %}
+                        {% elif exists7==True %}
+                            {% if exists8==False %}
+                                {% if page!=1 %}
+
+                                {% endif %}
+                        {% elif exists8==True %}
+                            {% if exists9==False %}
+                                {% if page!=1 %}
+
+                                {% endif %}    
+                            {% elif exists9==True %}
+                                {% if exists10==False %}
+                                    {% if page!=1 %}
+
+                                    {% endif %}    
+                                {% elif exists10==True %}
+                                    {% if page!=1 %}
+
+                                    {% endif %}    
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endif %}
+{% endif %}
+
+
+
+{% if len > (page * 10) %}
+
+{% endif %}  
+
+
+
+{% endblock %}
+{% endblock %}

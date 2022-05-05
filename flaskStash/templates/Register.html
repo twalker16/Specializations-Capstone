@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Mu Stash || Register</title>
+{% endblock %}
+
+{% block body %}
+<icon title="Why are you looking at my logo?" id="login_logo"></icon>
+
+<div id="login_container">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        
+            <div class="form-group">
+                <div id="registerForm1">
+                    {{ form.username.label(class="register_label") }}
+                </div>
+
+                {% if form.username.errors %}
+                    {{ form.username(class="login_field is-invalid", id="register_username") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.username(class="login_field", id="register_username") }}
+                {% endif %}
+
+            </div>
+            <div class="form-group">
+                <div id="registerForm2">
+                    {{ form.password.label(class="register_label") }}
+                </div>
+                {% if form.password.errors %}
+                {{ form.password(class="login_field is-invalid", id="register_password") }}
+                <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.password(class="login_field", id="register_password") }}
+            {% endif %}
+            </div>
+            <div class="form-group">
+                <div id="registerForm3">
+                    {{ form.confirmPassword.label(class="register_label") }}
+                </div>
+                {% if form.confirmPassword.errors %}
+                    {{ form.confirmPassword(class="login_field is-invalid", id="confirmPassword") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.confirmPassword.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.confirmPassword(class="login_field", id="confirmPassword") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <div id="registerForm4">
+                    {{ form.birthMonth.label(class="register_label") }}
+                </div>
+                {% if form.birthMonth.errors %}
+                    {{ form.birthMonth(class="login_field is-invalid", id="register_month") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.birthMonth.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.birthMonth(class="login_field", id="register_month") }}
+                {% endif %}
+            </div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info", id="register_button") }}
+        </div>
+    </form>
+    <div class="redirect">
+        <small class="text-muted">Already Have An Account? <a href="{{  url_for('login')  }}">Sign In</a> </small>
+    </div>
+</div>
+
+{% endblock %}
+
+

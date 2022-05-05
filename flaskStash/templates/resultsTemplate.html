@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        {% with messages= get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category  }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% if current_user.is_authenticated %}
+        
+        <header>
+            <a href ="{{ url_for('homepage', page=1) }}">
+                <icon title="Homepage" id="logo"></icon>
+            </a> 
+            <a href ="{{ url_for('profile') }}">
+                <icon title="My Profile" id="profile"></icon>
+            </a>
+            <a href ="{{ url_for('stash', page=1) }}">
+                <icon title="My Stash" id="collection"></icon>
+            </a>
+            <a href ="{{ url_for('wishlist', page=1) }}">
+                <icon title="My Wishlist" id="wishlist"></icon>
+            </a>
+            <a href ="{{ url_for('addToDatabase') }}">
+                <icon title="Add to Database" id="addToDatabase"></icon>
+            </a>
+            
+            <!-- <form method='Post' id="searchForm" method="GET">
+                {{ form.hidden_tag() }}
+                {{ form.searched(id="searchbar") }}
+                <div>
+                    {{ form.submit(id='searchButton') }}
+                </div>
+                 <input id="searchbar" type="search" placeholder="Search" aria_label="Search" name="searched">
+                    action="{{ url_for('search', page=1, query='') }}"
+                <button id='searchButton' type="submit"></button>
+            </form> -->
+            
+        </header>
+        {% else %}
+        <meta http-equiv="Refresh" content="0; url='{{ url_for('login') }}'" />
+        {% endif %}
+        <!-- <h1>{{page}}</h1>
+        <h1>{{current_user.id}}</h1> -->
+        
+
+
+
+        {% if album_basic_results[0+((page-1)*10)] %}
+        {% set exists1 = True %}
+        {% else %}
+        {% set exists1 = False %}
+        {% endif %}
+
+        {% if album_basic_results[1+((page-1)*10)] %}
+        {% set exists2 = True %}
+        {% else %}
+        {% set exists2 = False %}
+        {% endif %}
+
+        {% if album_basic_results[2+((page-1)*10)] %}
+        {% set exists3 = True %}
+        {% else %}
+        {% set exists3 = False %}
+        {% endif %}
+
+        {% if album_basic_results[3+((page-1)*10)] %}
+        {% set exists4 = True %}
+        {% else %}
+        {% set exists4 = False %}
+        {% endif %}
+
+        {% if album_basic_results[4+((page-1)*10)] %}
+        {% set exists5 = True %}
+        {% else %}
+        {% set exists5 = False %}
+        {% endif %}
+
+        {% if album_basic_results[5+((page-1)*10)] %}
+        {% set exists6 = True %}
+        {% else %}
+        {% set exists6 = False %}
+        {% endif %}
+
+        {% if album_basic_results[6+((page-1)*10)] %}
+        {% set exists7 = True %}
+        {% else %}
+        {% set exists7 = False %}
+        {% endif %}
+
+        {% if album_basic_results[7+((page-1)*10)] %}
+        {% set exists8 = True %}
+        {% else %}
+        {% set exists8 = False %}
+        {% endif %}
+
+        {% if album_basic_results[8+((page-1)*10)] %}
+        {% set exists9 = True %}
+        {% else %}
+        {% set exists9 = False %}
+        {% endif %}
+
+        {% if album_basic_results[9+((page-1)*10)] %}
+        {% set exists10 = True %}
+        {% else %}
+        {% set exists10 = False %}
+        {% endif %}
+
+      
+        
+        {% if exists1==True %}
+        <!-- <a href="{{ url_for('album', album_name=album_basic_results[0+((page-1)*10)][1], format_id=album_basic_results[0+((page-1)*10)][6])}}"> -->
+            <div class="album_display" id="album_display1">
+                <img class="rt_art" src="../static/AlbumArt/{{album_basic_results[0+((page-1)*10)][3]}}">
+                <h1 class="rt_artist">{{ album_basic_results[0+((page-1)*10)][4] }}</h1>
+                <h2 class="rt_album">{{ album_basic_results[0+((page-1)*10)][1] }}</h2>
+                <h3 class="rt_year">{{ album_basic_results[0+((page-1)*10)][2] }}</h3>
+                <h3 class="rt_format">{{ album_basic_results[0+((page-1)*10)][5] }}</h3>
+                <h3 class="rt_rating">
+                    
+                    {% if rating.filter(User_Catalogs.album_id==album_basic_results[0+((page-1)*10)][0]).first()[0] == 0 %}
+                        Not rated yet
+                    {% elif rating.filter(User_Catalogs.album_id==album_basic_results[0+((page-1)*10)][0]).first()[0] %}
+                        {{ "%0.2f" | format(rating.filter(User_Catalogs.album_id==album_basic_results[0+((page-1)*10)][0]).first()[0] | float) }}/5 Stars Overall ({{rating.filter(User_Catalogs.album_id==album_basic_results[0+((page-1)*10)][0]).first()[1]}} reviews)
+                    {% else %}
+                    Not rated yet
+                    {% endif %}
+                </h3>
+                {% if stash.filter(User_Catalogs.format==album_basic_results[0+((page-1)*10)][6], User_Catalogs.user_id==current_user.id).first() %}  
+                <a href ="{{ url_for('remove_stash', format_id=album_basic_results[0+((page-1)*10)][6]) }}"><button class="stash-btn remove">Remove From Stash</button></a>
+                {% else %}
+                    <a href ="{{ url_for('add_stash', format_id=album_basic_results[0+((page-1)*10)][6]) }}"><button class="stash-btn">Add To Stash</button></a>
+                    {% if wishlist.filter(User_Wishlists.format==album_basic_results[0+((page-1)*10)][6], User_Wishlists.user_id==current_user.id).first() %}  
+                        <a href ="{{ url_for('remove_wishlist', format_id=album_basic_results[0+((page-1)*10)][6]) }}"><button class="wishlist-btn remove">Remove From Wishlist</button></a> 
+                     {% else %}
+                        <a href ="{{ url_for('add_wishlist', format_id=album_basic_results[0+((page-1)*10)][6]) }}"><button class="wishlist-btn">Add To Wishlist</button></a>
+                     {% endif %}
+                {% endif %}
+            </div>
+        <!-- </a> -->
+        {% endif %}
+            
+            
+            
+            {% if exists2==True %}
+            <div class="album_display2" id="album_display2">    
+                <img class="rt_art" src="../static/AlbumArt/{{ album_basic_results[1+((page-1)*10)][3]}}">
+                <h1 class="rt_artist">{{ album_basic_results[1+((page-1)*10)][4] }}</h1>
+                <h2 class="rt_album">{{ album_basic_results[1+((page-1)*10)][1] }}</h2>
+                <h3 class="rt_year">{{ album_basic_results[1+((page-1)*10)][2] }}</h3>
+                <h3 class="rt_format">{{ album_basic_results[1+((page-1)*10)][5] }}</h3>
+                <h3 class="rt_rating">
+                    
+                    {% if rating.filter(User_Catalogs.album_id==album_basic_results[1+((page-1)*10)][0]).first()[0] == 0 %}
+                        Not rated yet
+                    {% elif rating.filter(User_Catalogs.album_id==album_basic_results[1+((page-1)*10)][0]).first()[0] %}
+                        {{ "%0.2f" | format(rating.filter(User_Catalogs.album_id==album_basic_results[1+((page-1)*10)][0]).first()[0] | float) }}/5 Stars Overall ({{rating.filter(User_Catalogs.album_id==album_basic_results[1+((page-1)*10)][0]).first()[1]}} reviews)
+                    {% else %}
+                    Not rated yet
+                {% endif %}
+                </h3>
+                {% if stash.filter(User_Catalogs.format==album_basic_results[1+((page-1)*10)][6], User_Catalogs.user_id==current_user.id).first() %}  
+                    <a href ="{{ url_for('remove_stash', format_id=album_basic_results[1+((page-1)*10)][6]) }}"><button class="stash-btn remove">Remove From Stash</button></a>
+                {% else %}
+                    <a href ="{{ url_for('add_stash', format_id=album_basic_results[1+((page-1)*10)][6]) }}"><button class="stash-btn ">Add To Stash</button></a>
+                    {% if wishlist.filter(User_Wishlists.format==album_basic_results[1+((page-1)*10)][6], User_Wishlists.user_id==current_user.id).first() %}  
+                    <a href ="{{ url_for('remove_wishlist', format_id=album_basic_results[1+((page-1)*10)][6]) }}"><button class="wishlist-btn remove">Remove From Wishlist</button></a> 
+                    {% else %}
+                    <a href ="{{ url_for('add_wishlist', format_id=album_basic_results[1+((page-1)*10)][6]) }}"><button class="wishlist-btn">Add To Wishlist</button></a>
+                    {% endif %}
+                {% endif %}
+            </div>
+             
+        {% endif %}
+
+        
+        
+        {% if exists3==True %}
+            <div class="album_display" id="album_display3">
+                <img class="rt_art" src="../static/AlbumArt/{{ album_basic_results[2+((page-1)*10)][3]}}">
+                <h1 class="rt_artist">{{ album_basic_results[2+((page-1)*10)][4] }}</h1>
+                <h2 class="rt_album">{{ album_basic_results[2+((page-1)*10)][1] }}</h2>
+                <h3 class="rt_year">{{ album_basic_results[2+((page-1)*10)][2] }}</h3>
+                <h3 class="rt_format">{{ album_basic_results[2+((page-1)*10)][5] }}</h3>
+                <h3 class="rt_rating">
+                
+                {% if rating.filter(User_Catalogs.album_id==album_basic_results[2+((page-1)*10)][0]).first()[0] == 0 %}
+                    Not rated yet
+                {% elif rating.filter(User_Catalogs.album_id==album_basic_results[2+((page-1)*10)][0]).first()[0] %}
+                    {{ "%0.2f" | format(rating.filter(User_Catalogs.album_id==album_basic_results[2+((page-1)*10)][0]).first()[0] | float) }}/5 Stars Overall ({{rating.filter(User_Catalogs.album_id==album_basic_results[2+((page-1)*10)][0]).first()[1]}} reviews)
+                {% else %}
+                    Not rated yet
+                {% endif %}
+                </h3>
+                {% if stash.filter(User_Catalogs.format==album_basic_results[2+((page-1)*10)][6], User_Catalogs.user_id==current_user.id).first() %}  
+                <a href ="{{ url_for('remove_stash', format_id=album_basic_results[2+((page-1)*10)][6]) }}"><button class="stash-btn remove">Remove From Stash</button></a>
+                {% else %}
+                    <a href ="{{ url_for('add_stash', format_id=album_basic_results[2+((page-1)*10)][6]) }}"><button class="stash-btn">Add To Stash</button></a>
+                    {% if wishlist.filter(User_Wishlists.format==album_basic_results[2+((page-1)*10)][6], User_Wishlists.user_id==current_user.id).first() %}  
+                        <a href ="{{ url_for('remove_wishlist', format_id=album_basic_results[2+((page-1)*10)][6]) }}"><button class="wishlist-btn remove">Remove From Wishlist</button></a> 
+                     {% else %}
+                        <a href ="{{ url_for('add_wishlist', format_id=album_basic_results[2+((page-1)*10)][6]) }}"><button class="wishlist-btn">Add To Wishlist</button></a>
+                     {% endif %}
+                {% endif %}
+            </div>
+             
+        {% endif %}
+
+       
+        
+        {% if exists4==True %}
+            <div class="album_display2" id="album_display4">
+                <img class="rt_art" src="../static/AlbumArt/{{ album_basic_results[3+((page-1)*10)][3]}}">
+                <h1 class="rt_artist">{{ album_basic_results[3+((page-1)*10)][4] }}</h1>
+                <h2 class="rt_album">{{ album_basic_results[3+((page-1)*10)][1] }}</h2>
+                <h3 class="rt_year">{{ album_basic_results[3+((page-1)*10)][2] }}</h3>
+                <h3 class="rt_format">{{ album_basic_results[3+((page-1)*10)][5] }}</h3>
+                <h3 class="rt_rating">
+            
+                {% if rating.filter(User_Catalogs.album_id==album_basic_results[3+((page-1)*10)][0]).first()[0] %}
+                    {{ "%0.2f" | format(rating.filter(User_Catalogs.album_id==album_basic_results[3+((page-1)*10)][0]).first()[0] | float) }}/5 Stars Overall ({{rating.filter(User_Catalogs.album_id==album_basic_results[3+((page-1)*10)][0]).first()[1]}} reviews)
+                {% else %}
+                    Not rated yet
+                {% endif %}
+                </h3>
+                {% if stash.filter(User_Catalogs.format==album_basic_results[3+((page-1)*10)][6], User_Catalogs.user_id==current_user.id).first() %}  
+                <a href ="{{ url_for('remove_stash', format_id=album_basic_results[3+((page-1)*10)][6]) }}"><button class="stash-btn remove">Remove From Stash</button></a>
+                {% else %}
+                    <a href ="{{ url_for('add_stash', format_id=album_basic_results[3+((page-1)*10)][6]) }}"><button class="stash-btn">Add To Stash</button></a>
+                    {% if wishlist.filter(User_Wishlists.format==album_basic_results[3+((page-1)*10)][6], User_Wishlists.user_id==current_user.id).first() %}  
+                        <a href ="{{ url_for('remove_wishlist', format_id=album_basic_results[3+((page-1)*10)][6]) }}"><button class="wishlist-btn remove">Remove From Wishlist</button></a> 
+                     {% else %}
+                        <a href ="{{ url_for('add_wishlist', format_id=album_basic_results[3+((page-1)*10)][6]) }}"><button class="wishlist-btn">Add To Wishlist</button></a>
+                     {% endif %}
+                {% endif %}
+            </div>
+               
+        {% endif %}
+
+        
+        
+        {% if exists5==True %}
+            <div class="album_display" id="album_display5">
+                <img class="rt_art" src="../static/AlbumArt/{{ album_basic_results[4+((page-1)*10)][3]}}">
+                <h1 class="rt_artist">{{ album_basic_results[4+((page-1)*10)][4] }}</h1>
+                <h2 class="rt_album">{{ album_basic_results[4+((page-1)*10)][1] }}</h2>
+                <h3 class="rt_year">{{ album_basic_results[4+((page-1)*10)][2] }}</h3>
+                <h3 class="rt_format">{{ album_basic_results[4+((page-1)*10)][5] }}</h3>
+                <h3 class="rt_rating">
+            
+                {% if rating.filter(User_Catalogs.album_id==album_basic_results[4+((page-1)*10)][0]).first()[0] %}
+                    {{ "%0.2f" | format(rating.filter(User_Catalogs.album_id==album_basic_results[4+((page-1)*10)][0]).first()[0] | float) }}/5 Stars Overall ({{rating.filter(User_Catalogs.album_id==album_basic_results[4+((page-1)*10)][0]).first()[1]}} reviews)
+                {% else %}
+                    Not rated yet
+                {% endif %}
+                </h3>
+                {% if stash.filter(User_Catalogs.format==album_basic_results[4+((page-1)*10)][6], User_Catalogs.user_id==current_user.id).first() %}  
+                <a href ="{{ url_for('remove_stash', format_id=album_basic_results[4+((page-1)*10)][6]) }}"><button class="stash-btn remove">Remove From Stash</button></a>
+                {% else %}
+                    <a href ="{{ url_for('add_stash', format_id=album_basic_results[4+((page-1)*10)][6]) }}"><button class="stash-btn">Add To Stash</button></a>
+                    {% if wishlist.filter(User_Wishlists.format==album_basic_results[4+((page-1)*10)][6], User_Wishlists.user_id==current_user.id).first() %}  
+                        <a href ="{{ url_for('remove_wishlist', format_id=album_basic_results[4+((page-1)*10)][6]) }}"><button class="wishlist-btn remove">Remove From Wishlist</button></a> 
+                     {% else %}
+                        <a href ="{{ url_for('add_wishlist', format_id=album_basic_results[4+((page-1)*10)][6]) }}"><button class="wishlist-btn">Add To Wishlist</button></a>
+                     {% endif %}
+                {% endif %}
+            </div>
+              
+        {% endif %}
+
+        
+        
+        {% if exists6==True %}
+            <div class="album_display2" id="album_display6">
+                <img class="rt_art" src="../static/AlbumArt/{{ album_basic_results[5+((page-1)*10)][3]}}">
+                <h1 class="rt_artist">{{ album_basic_results[5+((page-1)*10)][4] }}</h1>
+                <h2 class="rt_album">{{ album_basic_results[5+((page-1)*10)][1] }}</h2>
+                <h3 class="rt_year">{{ album_basic_results[5+((page-1)*10)][2] }}</h3>
+                <h3 class="rt_format">{{ album_basic_results[5+((page-1)*10)][5] }}</h3>
+                <h3 class="rt_rating">
+            
+                {% if rating.filter(User_Catalogs.album_id==album_basic_results[5+((page-1)*10)][0]).first()[0] %}
+                    {{ "%0.2f" | format(rating.filter(User_Catalogs.album_id==album_basic_results[5+((page-1)*10)][0]).first()[0] | float) }}/5 Stars Overall ({{rating.filter(User_Catalogs.album_id==album_basic_results[5+((page-1)*10)][0]).first()[1]}} reviews)
+                {% else %}
+                    Not rated yet
+                {% endif %}
+                </h3>
+                {% if stash.filter(User_Catalogs.format==album_basic_results[5+((page-1)*10)][6], User_Catalogs.user_id==current_user.id).first() %}  
+                <a href ="{{ url_for('remove_stash', format_id=album_basic_results[5+((page-1)*10)][6]) }}"><button class="stash-btn remove">Remove From Stash</button></a>
+                {% else %}
+                    <a href ="{{ url_for('add_stash', format_id=album_basic_results[5+((page-1)*10)][6]) }}"><button class="stash-btn">Add To Stash</button></a>
+                    {% if wishlist.filter(User_Wishlists.format==album_basic_results[5+((page-1)*10)][6], User_Wishlists.user_id==current_user.id).first() %}  
+                        <a href ="{{ url_for('remove_wishlist', format_id=album_basic_results[5+((page-1)*10)][6]) }}"><button class="wishlist-btn remove">Remove From Wishlist</button></a> 
+                     {% else %}
+                        <a href ="{{ url_for('add_wishlist', format_id=album_basic_results[5+((page-1)*10)][6]) }}"><button class="wishlist-btn">Add To Wishlist</button></a>
+                     {% endif %}
+                {% endif %}
+            </div>
+               
+        {% endif %}
+
+        
+        
+        {% if exists7==True %}
+            <div class="album_display" id="album_display7">
+                <img class="rt_art" src="../static/AlbumArt/{{ album_basic_results[6+((page-1)*10)][3]}}">
+                <h1 class="rt_artist">{{ album_basic_results[6+((page-1)*10)][4] }}</h1>
+                <h2 class="rt_album">{{ album_basic_results[6+((page-1)*10)][1] }}</h2>
+                <h3 class="rt_year">{{ album_basic_results[6+((page-1)*10)][2] }}</h3>
+                <h3 class="rt_format">{{ album_basic_results[6+((page-1)*10)][5] }}</h3>
+                <h3 class="rt_rating">
+            
+                {% if rating.filter(User_Catalogs.album_id==album_basic_results[6+((page-1)*10)][0]).first()[0] %}
+                    {{ "%0.2f" | format(rating.filter(User_Catalogs.album_id==album_basic_results[6+((page-1)*10)][0]).first()[0] | float) }}/5 Stars Overall ({{rating.filter(User_Catalogs.album_id==album_basic_results[6+((page-1)*10)][0]).first()[1]}} reviews)
+                {% else %}
+                    Not rated yet
+                {% endif %}
+                </h3>
+                {% if stash.filter(User_Catalogs.format==album_basic_results[6+((page-1)*10)][6], User_Catalogs.user_id==current_user.id).first() %}  
+                <a href ="{{ url_for('remove_stash', format_id=album_basic_results[6+((page-1)*10)][6]) }}"><button class="stash-btn remove">Remove From Stash</button></a>
+                {% else %}
+                    <a href ="{{ url_for('add_stash', format_id=album_basic_results[6+((page-1)*10)][6]) }}"><button class="stash-btn">Add To Stash</button></a>
+                    {% if wishlist.filter(User_Wishlists.format==album_basic_results[6+((page-1)*10)][6], User_Wishlists.user_id==current_user.id).first() %}  
+                        <a href ="{{ url_for('remove_wishlist', format_id=album_basic_results[6+((page-1)*10)][6]) }}"><button class="wishlist-btn remove">Remove From Wishlist</button></a> 
+                     {% else %}
+                        <a href ="{{ url_for('add_wishlist', format_id=album_basic_results[6+((page-1)*10)][6]) }}"><button class="wishlist-btn">Add To Wishlist</button></a>
+                     {% endif %}
+                {% endif %}
+            </div>
+              
+        {% endif %}
+        
+        
+        
+        {% if exists8==True %}
+            <div class="album_display2" id="album_display8">
+                <img class="rt_art" src="../static/AlbumArt/{{ album_basic_results[7+((page-1)*10)][3]}}">
+                <h1 class="rt_artist">{{ album_basic_results[7+((page-1)*10)][4] }}</h1>
+                <h2 class="rt_album">{{ album_basic_results[7+((page-1)*10)][1] }}</h2>
+                <h3 class="rt_year">{{ album_basic_results[7+((page-1)*10)][2] }}</h3>
+                <h3 class="rt_format">{{ album_basic_results[7+((page-1)*10)][5] }}</h3>
+                <h3 class="rt_rating">
+            
+                {% if rating.filter(User_Catalogs.album_id==album_basic_results[7+((page-1)*10)][0]).first()[0] %}
+                    {{ "%0.2f" | format(rating.filter(User_Catalogs.album_id==album_basic_results[7+((page-1)*10)][0]).first()[0] | float) }}/5 Stars Overall ({{rating.filter(User_Catalogs.album_id==album_basic_results[7+((page-1)*10)][0]).first()[1]}} reviews)
+                {% else %}
+                    Not rated yet
+                {% endif %}
+                </h3>
+                {% if stash.filter(User_Catalogs.format==album_basic_results[7+((page-1)*10)][6], User_Catalogs.user_id==current_user.id).first() %}  
+                <a href ="{{ url_for('remove_stash', format_id=album_basic_results[7+((page-1)*10)][6]) }}"><button class="stash-btn remove">Remove From Stash</button></a>
+                {% else %}
+                    <a href ="{{ url_for('add_stash', format_id=album_basic_results[7+((page-1)*10)][6]) }}"><button class="stash-btn">Add To Stash</button></a>
+                    {% if wishlist.filter(User_Wishlists.format==album_basic_results[7+((page-1)*10)][6], User_Wishlists.user_id==current_user.id).first() %}  
+                        <a href ="{{ url_for('remove_wishlist', format_id=album_basic_results[7+((page-1)*10)][6]) }}"><button class="wishlist-btn remove">Remove From Wishlist</button></a> 
+                     {% else %}
+                        <a href ="{{ url_for('add_wishlist', format_id=album_basic_results[7+((page-1)*10)][6]) }}"><button class="wishlist-btn">Add To Wishlist</button></a>
+                     {% endif %}
+                {% endif %}
+            </div>
+              
+        {% endif %}
+        
+        
+        
+        {% if exists9==True %}
+            <div class="album_display" id="album_display9">
+                <img class="rt_art" src="../static/AlbumArt/{{ album_basic_results[8+((page-1)*10)][3]}}">
+                <h1 class="rt_artist">{{ album_basic_results[8+((page-1)*10)][4] }}</h1>
+                <h2 class="rt_album">{{ album_basic_results[8+((page-1)*10)][1] }}</h2>
+                <h3 class="rt_year">{{ album_basic_results[8+((page-1)*10)][2] }}</h3>
+                <h3 class="rt_format">{{ album_basic_results[8+((page-1)*10)][5] }}</h3>
+                <h3 class="rt_rating">
+            
+                {% if rating.filter(User_Catalogs.album_id==album_basic_results[8+((page-1)*10)][0]).first()[0] %}
+                    {{ "%0.2f" | format(rating.filter(User_Catalogs.album_id==album_basic_results[8+((page-1)*10)][0]).first()[0] | float) }}/5 Stars Overall ({{rating.filter(User_Catalogs.album_id==album_basic_results[8+((page-1)*10)][0]).first()[1]}} reviews)
+                {% else %}
+                    Not rated yet
+                {% endif %}
+                </h3>
+                {% if stash.filter(User_Catalogs.format==album_basic_results[8+((page-1)*10)][6], User_Catalogs.user_id==current_user.id).first() %}  
+                <a href ="{{ url_for('remove_stash', format_id=album_basic_results[8+((page-1)*10)][6]) }}"><button class="stash-btn remove">Remove From Stash</button></a>
+                {% else %}
+                    <a href ="{{ url_for('add_stash', format_id=album_basic_results[8+((page-1)*10)][6]) }}"><button class="stash-btn">Add To Stash</button></a>
+                    {% if wishlist.filter(User_Wishlists.format==album_basic_results[8+((page-1)*10)][6], User_Wishlists.user_id==current_user.id).first() %}  
+                        <a href ="{{ url_for('remove_wishlist', format_id=album_basic_results[8+((page-1)*10)][6]) }}"><button class="wishlist-btn remove">Remove From Wishlist</button></a> 
+                     {% else %}
+                        <a href ="{{ url_for('add_wishlist', format_id=album_basic_results[8+((page-1)*10)][6]) }}"><button class="wishlist-btn">Add To Wishlist</button></a>
+                     {% endif %}
+                {% endif %}
+            </div>
+               
+        {% endif %}
+
+        
+        
+        {% if exists10==True %}
+            <div class="album_display2" id="album_display10">
+                <img class="rt_art" src="../static/AlbumArt/{{ album_basic_results[9+((page-1)*10)][3]}}">
+                <h1 class="rt_artist">{{ album_basic_results[9+((page-1)*10)][4] }}</h1>
+                <h2 class="rt_album">{{ album_basic_results[9+((page-1)*10)][1] }}</h2>
+                <h3 class="rt_year">{{ album_basic_results[9+((page-1)*10)][2] }}</h3>
+                <h3 class="rt_format">{{ album_basic_results[9+((page-1)*10)][5] }}</h3>
+                <h3 class="rt_rating">
+            
+                {% if rating.filter(User_Catalogs.album_id==album_basic_results[9+((page-1)*10)][0]).first()[0] %}
+                    {{ "%0.2f" | format(rating.filter(User_Catalogs.album_id==album_basic_results[9+((page-1)*10)][0]).first()[0] | float) }}/5 Stars Overall ({{rating.filter(User_Catalogs.album_id==album_basic_results[9+((page-1)*10)][0]).first()[1]}} reviews)
+                {% else %}
+                    Not rated yet
+                {% endif %}
+                </h3>
+                {% if stash.filter(User_Catalogs.format==album_basic_results[9+((page-1)*10)][6], User_Catalogs.user_id==current_user.id).first() %}  
+                <a href ="{{ url_for('remove_stash', format_id=album_basic_results[9+((page-1)*10)][6]) }}"><button class="stash-btn remove">Remove From Stash</button></a>
+                {% else %}
+                    <a href ="{{ url_for('add_stash', format_id=album_basic_results[9+((page-1)*10)][6]) }}"><button class="stash-btn">Add To Stash</button></a>
+                    {% if wishlist.filter(User_Wishlists.format==album_basic_results[9+((page-1)*10)][6], User_Wishlists.user_id==current_user.id).first() %}  
+                        <a href ="{{ url_for('remove_wishlist', format_id=album_basic_results[9+((page-1)*10)][6]) }}"><button class="wishlist-btn remove">Remove From Wishlist</button></a> 
+                     {% else %}
+                        <a href ="{{ url_for('add_wishlist', format_id=album_basic_results[9+((page-1)*10)][6]) }}"><button class="wishlist-btn">Add To Wishlist</button></a>
+                     {% endif %}
+                {% endif %}
+            </div>
+                
+            {% endif %}
+                
+            
+
+        {% block body %}
+        {% endblock %}
+    </body>
+    </html>
+    

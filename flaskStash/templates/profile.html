@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Mu Stash || Profile</title>
+{% endblock %}
+
+{% block body %}
+<div class="content-section">
+    <div class="media">
+      <!-- <img class="rounded-circle account-img" src="userimage.jpg"> -->
+      <div class="media-body">
+          <h1 id="p_header">My Profile</h1>
+        <!-- <h2 class="account-heading"></h2> -->
+        <!-- <p class="text-secondary">username@email.com</p> -->
+      </div>
+    </div>
+    <!-- FORM HERE -->
+  </div>
+
+<a href ="{{ url_for('logout') }}">
+    <button id="logout-btn">Logout</button>
+</a>
+<a href ="{{ url_for('homepage', page=1) }}">
+    <button id="homepage-btn">Homepage</button>
+</a>
+
+
+<div id="profileUpdateContainer">
+    <h1 id="profileUpdateHeader">Update Profile</h1>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+            <div id="loginForm1">
+                {{ form.username.label(class="profile_label", id="p_label_1") }}
+            </div>
+            
+            {% if form.username.errors %}
+            {{ form.username(class="login_field is-invalid", id="profile_username") }}
+            <div class="invalid-feedback">
+                {% for error in form.username.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.username(class="login_field", id="profile_username") }}
+            {% endif %}
+            
+        </div>
+        <div class="form-group">
+            <div id="loginForm2">
+                {{ form.birthMonth.label(class="profile_label", id="p_label_2") }}
+            </div>
+            {% if form.birthMonth.errors %}
+            {{ form.birthMonth(class="login_field is-invalid", id="profile_month") }}
+            <div class="invalid-feedback">
+                {% for error in form.birthMonth.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.birthMonth(class="login_field", id="profile_month") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.submit(id="profile_button") }}
+        </div>
+    </div>
+    </form>
+<div class="p_label" id="p_username_label"><div class='text_anchor'>Username:</div></div>
+<div class="p_val" id="p_username"><div class='text_anchor'>{{ current_user.username }}</div></div>
+
+<div class="p_label" id="p_birthMonth_label"><div class='text_anchor'>Birth Month:</div></div>
+<div class="p_val" id="p_birthMonth"><div class='text_anchor'>{{ month }}</div></div>
+
+<div class="p_label" id="p_birthYear_label"><div class='text_anchor'>Birth Year:</div></div>
+<div class="p_val" id="p_birthYear"><div class='text_anchor'>{{ current_user.birth_year }}</div></div>
+
+<div class="p_label" id="p_wishlist_label"><div class='text_anchor'>Items on Wishlist:</div></div>
+<div class="p_val" id="p_wishlist"><div class='text_anchor'>{{ wishlist_length }}</div></div>
+
+<div class="p_label" id="p_stash_label"><div class='text_anchor'>Items in Stash:</div></div>
+<div class="p_val" id="p_stash"><div class='text_anchor'>{{ stash_length }}</div></div>
+
+<h1 class="p_label" id="p_stash_val_label"><div class='text_anchor'>Value of Stash:</div></h1>
+<div class="p_val" id="p_stash_val"><div class='text_anchor'>
+    {% if stash_value==None %}
+        $0 USD
+    {% else %}
+        ${{ stash_value }} USD
+    {% endif %}
+</div></div>
+    {% endblock %}
+    

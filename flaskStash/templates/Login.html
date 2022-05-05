@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Mu Stash || Login</title>
+{% endblock %}
+
+{% block body %}
+<icon title="Why are you looking at my logo?" id="login_logo"></icon>
+
+<div id="login_container">
+    <form method="POST" action="">
+        {{  form.hidden_tag() }}
+        
+            <div class="form-group">
+                <div id="registerForm1">
+                    {{  form.username.label(class="register_label") }}
+                </div>
+
+                {% if form.username.errors %}
+                    {{  form.username(class="login_field is-invalid", id="register_username") }}
+                    <div class="invalid-feedback">
+                        {%  for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.username(class="login_field", id="register_username") }}
+                {%  endif %}
+
+            </div>
+            <div class="form-group">
+                <div id="registerForm2">
+                    {{  form.password.label(class="register_label") }}
+                </div>
+                {%  if form.password.errors %}
+                {{  form.password(class="login_field is-invalid", id="register_password") }}
+                <div class="invalid-feedback">
+                    {%  for error in form.password.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {%  else %}
+                {{ form.password(class="login_field", id="register_password") }}
+            {% endif %}
+            </div>
+            <div class="form-check" id="rememberMe">
+                {{ form.remember(class="form-check-input") }}
+              {{ form.remember.label(class="form-check-label register_label") }}
+            </div>
+
+        <div class="form-group">
+            {{  form.submit(class="btn btn-outline-info", id="register_button") }}
+        </div>
+    </form>
+    <div class="redirect">
+        <small class="text-muted">Need To Make An Account? <a href="{{  url_for('register')  }}">Sign Up</a> </small>
+    </div>
+</div>
+
+{% endblock %}
+
+
+<!-- <input class="login_field" id="register_username" type="text" placeholder="Username">
+<input class="login_field" id='register_password' type="password" placeholder="Password">
+<input class="login_field" id='register_password2' type="password" placeholder="Confirm Password">
+<input class="login_field" id='register_month' type="month">
+<button  class="login_field" id="register_button">Register</button> -->

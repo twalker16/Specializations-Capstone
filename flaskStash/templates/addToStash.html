@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Mu Stash || Add To Stash</title>
+{% endblock %}
+
+{% block body %}
+{% block content %}
+<!-- <h1>{{format_id}}</h1> -->
+<div class="media">
+    <h1 id="ats_artist">{{ album_info[0] }}</h1>
+    <h1 id="ats_album">{{ album_info[1] }}</h1>
+    <h1 id="ats_format">{{ album_info[4] }}</h1>
+  <img class="atsArt" src="../static/AlbumArt/{{ album_info[2] }}" >
+</div>
+
+<form method="POST" action="" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    
+        <div class="form-group">
+            <div id="atsForm1">
+                {{ form.package_condition.label(class="ats_label", id='ats_package_label') }}
+            </div>
+
+            {% if form.package_condition.errors %}
+                {{ form.package_condition(class="ats_field is-invalid", id="ats_package") }}
+                <div class="invalid-feedback">
+                    {% for error in form.package_condition.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.package_condition(class="ats_field", id="ats_package") }}
+            {% endif %}
+
+        </div>
+        <div class="form-group">
+            <div id="atsForm2">
+                {{ form.media_condition.label(class="ats_label", id="ats_media_label") }}
+            </div>
+            {% if form.media_condition.errors %}
+                {{ form.media_condition(class="ats_field is-invalid", id="ats_media") }}
+                <div class="invalid-feedback">
+                    {% for error in form.media_condition.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.media_condition(class="ats_field", id="ats_media") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <div id="atsForm3">
+                {{ form.approx_resale_value.label(class="ats_label", id="ats_resale_label") }}
+            </div>
+            {% if form.approx_resale_value.errors %}
+                {{ form.approx_resale_value(class="ats_field is-invalid", id="ats_resale") }}
+                <div class="invalid-feedback">
+                    {% for error in form.approx_resale_value.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.approx_resale_value(class="ats_field", id="ats_resale") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <div id="atsForm4">
+                {{ form.overall_rating.label(class="ats_label", id="ats_overall_label") }}
+            </div>
+            {% if form.overall_rating.errors %}
+                {{ form.overall_rating(class="ats_field is-invalid", id="ats_overall") }}
+                <div class="invalid-feedback">
+                    {% for error in form.overall_rating.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.overall_rating(class="ats_field", id="ats_overall") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <div id="atsForm5">
+                {{ form.production_rating.label(class="ats_label", id="ats_production_label") }}
+            </div>
+            {% if form.production_rating.errors %}
+                {{ form.production_rating(class="ats_field is-invalid", id="ats_production") }}
+                <div class="invalid-feedback">
+                    {% for error in form.production_rating.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.production_rating(class="ats_field", id="ats_production") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <div id="atsForm6">
+                {{ form.musicianship_rating.label(class="ats_label", id="ats_musicianship_label") }}
+            </div>
+            {% if form.musicianship_rating.errors %}
+                {{ form.musicianship_rating(class="ats_field is-invalid", id="ats_musicianship") }}
+                <div class="invalid-feedback">
+                    {% for error in form.musicianship_rating.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.musicianship_rating(class="ats_field", id="ats_musicianship") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <div id="atsForm7">
+                {{ form.songwriting_rating.label(class="ats_label", id="ats_songwriting_label") }}
+            </div>
+            {% if form.songwriting_rating.errors %}
+                {{ form.songwriting_rating(class="ats_field is-invalid", id="ats_songwriting") }}
+                <div class="invalid-feedback">
+                    {% for error in form.songwriting_rating.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.songwriting_rating(class="ats_field", id="ats_songwriting") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <div id="atsForm8">
+                {{ form.vocals_rating.label(class="ats_label", id="ats_vocals_label") }}
+            </div>
+            {% if form.vocals_rating.errors %}
+                {{ form.vocals_rating(class="ats_field is-invalid", id="ats_vocals") }}
+                <div class="invalid-feedback">
+                    {% for error in form.vocals_rating.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.vocals_rating(class="ats_field", id="ats_vocals") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <div id="atsForm9">
+                {{ form.lyrics_rating.label(class="ats_label", id="ats_lyrics_label") }}
+            </div>
+            {% if form.lyrics_rating.errors %}
+                {{ form.lyrics_rating(class="ats_field is-invalid", id="ats_lyrics") }}
+                <div class="invalid-feedback">
+                    {% for error in form.lyrics_rating.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.lyrics_rating(class="ats_field", id="ats_lyrics") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <div id="atsForm10">
+                {{ form.genre.label(class="ats_label", id="ats_genre_label") }}
+            </div>
+            {% if form.genre.errors %}
+                {{ form.genre(class="ats_field is-invalid", id="ats_genre") }}
+                <div class="invalid-feedback">
+                    {% for error in form.genre.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.genre(class="ats_field", id="ats_genre") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <div id="atsForm11">
+                {{ form.subgenre.label(class="ats_label", id="ats_subgenre_label") }}
+            </div>
+            {% if form.subgenre.errors %}
+                {{ form.subgenre(class="ats_field is-invalid", id="ats_subgenre") }}
+                <div class="invalid-feedback">
+                    {% for error in form.subgenre.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.subgenre(class="ats_field", id="ats_subgenre") }}
+            {% endif %}
+        </div>
+
+    <div class="form-group">
+        {{ form.submit(id="ats_button") }}
+    </div>
+</form>
+
+{% endblock %}
+{% endblock %}

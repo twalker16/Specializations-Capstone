@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Mu Stash || Add To Database</title>
+{% endblock %}
+
+
+
+{% block body %}
+{% block content %}
+<div class="content-section">
+    <div class="media">
+        <h1 id="atdb">Add To Database</h1>
+      <img class="atdbArt" src="{{ picture_file }}" >
+    </div>
+    <!-- FORM HERE -->
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        
+            <div class="form-group">
+                <div id="loginForm1">
+                    {{ form.artist.label(class="atdb_label", id='atdb_artist_label') }}
+                </div>
+    
+                {% if form.artist.errors %}
+                    {{ form.artist(class="atdb_field is-invalid", id="atdb_artist") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.artist.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.artist(class="atdb_field", id="atdb_artist") }}
+                {% endif %}
+    
+            </div>
+            <div class="form-group">
+                <div id="loginForm2">
+                    {{ form.album.label(class="atdb_label", id="atdb_album_label") }}
+                </div>
+                {% if form.album.errors %}
+                    {{ form.album(class="atdb_field is-invalid", id="atdb_album") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.album.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.album(class="atdb_field", id="atdb_album") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <div id="loginForm3">
+                    {{ form.year.label(class="atdb_label", id="atdb_year_label") }}
+                </div>
+                {% if form.year.errors %}
+                    {{ form.year(class="atdb_field is-invalid", id="atdb_year") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.year.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.year(class="atdb_field", id="atdb_year") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.image_file.label(class="atdb_label", id="atdb_image_label") }}
+                {{ form.image_file(class='form-control-file', id="atdb_image") }}
+                {% if form.image_file.errors %}
+                    {% for error in form.image_file.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}    
+            </div>
+            <div class="form-group">
+                <div id="loginForm4">
+                    {{ form.format.label(class="atdb_label", id="atdb_format_label") }}
+                </div>
+                {% if form.format.errors %}
+                    {{ form.format(class="atdb_field is-invalid", id="atdb_format") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.format.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.format(class="atdb_field", id="atdb_format") }}
+                {% endif %}
+            </div>
+
+        <div class="form-group">
+            {{ form.submit(id="atdb_button") }}
+        </div>
+    </form>
+  </div>
+{% endblock %}
+{% endblock %}

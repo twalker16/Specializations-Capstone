@@ -1,0 +1,79 @@
+{% extends 'resultsTemplate.html' %}
+
+{% block head %}
+<title>Mu Stash || Wishlist </title>
+{% endblock %}
+
+
+
+{% block body %}
+{% block content %}
+
+{% if exists1==True %}
+    {% if exists2==False %}
+        {% if page!=1 %}
+            <a href="{{ url_for('wishlist', page=(page-1)) }}"><button class="previous" id="prev1">&lt;</button></a>
+        {% endif %}    
+    {% elif exists2==True %}
+        {% if exists3==False %}
+            {% if page!=1 %}
+                <a href="{{ url_for('wishlist', page=(page-1)) }}"><button class="previous" id="prev2">&lt;</button></a>
+            {% endif %}    
+        {% elif exists3==True %}
+            {% if exists4==False %}
+                {% if page!=1 %}
+                    <a href="{{ url_for('wishlist', page=(page-1)) }}"><button class="previous" id="prev3">&lt;</button></a>
+                {% endif %}    
+            {% elif exists4==True %}
+                {% if exists5==False %}
+                    {% if page!=1 %}
+                        <a href="{{ url_for('wishlist', page=(page-1)) }}"><button class="previous" id="prev4">&lt;</button></a>
+                    {% endif %}    
+                {% elif exists5==True %}
+                    {% if exists6==False %}
+                        {% if page!=1 %}
+                            <a href="{{ url_for('wishlist', page=(page-1)) }}"><button class="previous" id="prev5">&lt;</button></a>
+                        {% endif %}    
+                    {% elif exists6==True %}
+                        {% if exists7==False %}
+                            {% if page!=1 %}
+                                <a href="{{ url_for('wishlist', page=(page-1)) }}"><button class="previous" id="prev6">&lt;</button></a>
+                            {% endif %}
+                        {% elif exists7==True %}
+                            {% if exists8==False %}
+                                {% if page!=1 %}
+                                    <a href="{{ url_for('wishlist', page=(page-1)) }}"><button class="previous" id="prev7">&lt;</button></a>
+                                {% endif %}
+                        {% elif exists8==True %}
+                            {% if exists9==False %}
+                                {% if page!=1 %}
+                                    <a href="{{ url_for('wishlist', page=(page-1)) }}"><button class="previous" id="prev8">&lt;</button></a>
+                                {% endif %}    
+                            {% elif exists9==True %}
+                                {% if exists10==False %}
+                                    {% if page!=1 %}
+                                        <a href="{{ url_for('wishlist', page=(page-1)) }}"><button class="previous" id="prev9">&lt;</button></a>
+                                    {% endif %}    
+                                {% elif exists10==True %}
+                                    {% if page!=1 %}
+                                        <a href="{{ url_for('wishlist', page=(page-1)) }}"><button class="previous" id="prev10">&lt;</button></a>
+                                    {% endif %}    
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endif %}
+{% endif %}
+
+
+
+{% if len > (page * 10) %}
+    <a href="{{ url_for('wishlist', page=(page+1)) }}"><button class="next" id="next">&gt;</button></a>
+{% endif %}  
+
+{% endblock %}
+{% endblock %}

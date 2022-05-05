@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Mu Stash || Add To Wishlist</title>
+{% endblock %}
+
+{% block body %}
+{% block content %}
+<div class="content-section">
+    <div class="media">
+      <img class="atdbArt" src="/static/AlbumArt/{{ album_info[2] }}" >
+    </div>
+    <h1 id="atwl_artist">{{ album_info[0] }}</h1>
+    <h1 id="atwl_album">{{ album_info[1] }}</h1>
+    <h1 id="atwl_format">{{ album_info[4] }}</h1>
+
+    
+    <h1 class="atwl_label" id="atwl_overall_label">Average Overall Rating</h1>
+    {% if album_ratings[0] %}
+    <h1 class="atwl_rating" id="atwl_overall">{{ "%0.2f" | format(album_ratings[0] | float) }}/5</h1>
+    {% else %}
+    <h1 class="atwl_rating" id="atwl_overall">Not rated yet</h1>
+    {% endif %}
+
+    <h1 class="atwl_label" id="atwl_production_label">Average Production Rating</h1>
+    {% if album_ratings[1] %}
+    <h1 class="atwl_rating" id="atwl_production">{{ "%0.2f" | format(album_ratings[1] | float) }}/5</h1>
+    {% else %}
+    <h1 class="atwl_rating" id="atwl_production">Not rated yet</h1>
+    {% endif %}
+
+    <h1 class="atwl_label" id="atwl_musicianship_label">Average Musicianship Rating</h1>
+    {% if album_ratings[2] %}
+    <h1 class="atwl_rating" id="atwl_musicianship">{{ "%0.2f" | format(album_ratings[2] | float) }}/5</h1>
+    {% else %}
+    <h1 class="atwl_rating" id="atwl_musicianship">Not rated yet</h1>
+    {% endif %}
+
+    <h1 class="atwl_label" id="atwl_songwriting_label">Average Songwriting Rating</h1>
+    {% if album_ratings[3] %}
+    <h1 class="atwl_rating" id="atwl_songwriting">{{ "%0.2f" | format(album_ratings[3] | float) }}/5</h1>
+    {% else %}
+    <h1 class="atwl_rating" id="atwl_songwriting">Not rated yet</h1>
+    {% endif %}
+
+    <h1 class="atwl_label" id="atwl_vocals_label">Average Vocals Rating</h1>
+    {% if album_ratings[4] %}
+    <h1 class="atwl_rating" id="atwl_vocals">{{ "%0.2f" | format(album_ratings[4] | float) }}/5</h1>
+    {% else %}
+    <h1 class="atwl_rating" id="atwl_vocals">Not rated yet</h1>
+    {% endif %}
+
+    <h1 class="atwl_label" id="atwl_lyrics_label">Average Lyrics Rating</h1>
+    {% if album_ratings[5] %}
+    <h1 class="atwl_rating" id="atwl_lyrics">{{ "%0.2f" | format(album_ratings[5] | float) }}/5</h1>
+    {% else %}
+    <h1 class="atwl_rating" id="atwl_lyrics">Not rated yet</h1>
+    {% endif %}
+
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        
+            <div class="form-group">
+                <div id="loginForm1">
+                    {{ form.purchase_priority.label(class="atdb_label", id='atwl_purchase_priority_label') }}
+                </div>
+    
+                {% if form.purchase_priority.errors %}
+                    {{ form.purchase_priority(class="atdb_field is-invalid", id="atwl_purchase_priority") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.purchase_priority.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.purchase_priority(class="atdb_field", id="atwl_purchase_priority") }}
+                {% endif %}
+    
+            </div>
+
+        <div class="form-group">
+            {{ form.submit(id="atdb_button") }}
+        </div>
+    </form>
+  </div>
+
+
+{% endblock %}
+{% endblock %}

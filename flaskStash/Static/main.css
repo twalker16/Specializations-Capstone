@@ -1,0 +1,841 @@
+@font-face {
+    font-family: 'Pixel';
+    src: url('./fonts/PressStart2P-Regular.ttf');
+}
+@font-face {
+    font-family: 'normal';
+    src: url('./fonts/Acme-Regular.ttf');
+}
+
+body {
+  margin:0;
+  font-family: 'normal';
+  background-color: #2e2c2f ;  
+  color: #afc1d6;
+  width: 100vw;
+}
+/* LOGIN/Register PAGE */
+#login_logo{
+    width: 33vh;
+    height: 33vh;
+    position: absolute;
+    top: 5vh;
+    left: calc(50vw - 16.5vh);
+    background-image: url('./Photos/Icon.png');
+    background-position: center;
+    background-size: cover;   
+}
+#login_container{
+    position:absolute;
+    width:75vw;
+    left:12.5vw;
+    /* background-color:#475b63 ; */
+    bottom: 5vh;
+    height: 53vh;
+    background-image: url('./Photos/Tape.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.login_field{
+    position:absolute;
+    height: 4vh;
+    background-color: #394549;
+    width: 20vw;
+    color: #f7a072;
+    font-family: 'Pixel';
+}
+#register_username{
+    top:5vh;
+    right: 27.5vw;
+}
+#register_password{
+    top:14vh;
+    right: 27.5vw;
+}
+#confirmPassword{
+    top:23vh;
+    right: 27.5vw;
+}
+#register_month{
+    top:32vh;
+    right: 27.5vw;
+}
+#register_button{
+    position:absolute;
+    top:41vh;
+    right: 35vw;
+    height: 4vh;
+    width: 16vh;
+    color:#f7a072;
+    background-color: #394549;
+    font-family: 'Pixel';
+    font-size: 1.25vh;
+}
+.register_label{
+    font-family: 'Pixel';
+    color:#f7a072;
+    left:20vw;
+    background-color: #475b63;
+
+}
+#registerForm1{
+    position:absolute;
+    top:2.5vh;
+    left: 27.5vw;
+}
+#registerForm2{
+    position:absolute;
+    top:11.5vh;
+    left: 27.5vw;
+}
+#registerForm3{
+    position:absolute;
+    top:20.5vh;
+    left: 27.5vw;
+}
+#registerForm4{
+    position:absolute;
+    top:29.5vh;
+    left: 27.5vw;
+}
+.redirect{
+    position:absolute;
+    top:44vh;
+    left: 40.5vw;
+}
+#rememberMe{
+    position:absolute;
+    top:20.5vh;
+    left: 27.5vw;
+    color:#f7a072;
+    font-family: "Pixel";
+}
+
+
+
+/* Profile */
+#logout-btn{
+    position:fixed;
+    top: 5vh;
+    right: 5vh;
+    height: 5vh;
+    width: 8vw;
+    background-color:#475b63;
+    color:#f7a072;
+    font-family: 'Pixel';
+    font-size: large;
+}
+
+#homepage-btn{
+    position:fixed;
+    top: 5vh;
+    right: calc(8vw + 10vh);
+    height: 5vh;
+    width: 8vw;
+    background-color:#475b63;
+    color:#f7a072;
+    font-family: 'Pixel';
+    font-size: large;
+}
+#profileUpdateContainer{
+    position: absolute;
+    right: 5vh;
+    top: 15vh;
+    height: 40vh;
+    width: 40vw;
+    background-color: #475b63;
+}
+#profileUpdateHeader{
+    position:absolute; 
+    font-family: 'normal';
+    color:#f7a072;
+    top: 1vh;
+    right:15vw;
+}
+.profile_label{
+    position:absolute; 
+    font-family: 'normal';
+    color:#f7a072;
+    left:10vw;
+}
+#p_label_1{
+    top: 10vh;
+}
+#p_label_2{
+    top: 20vh;
+}
+#profile_username{
+    position:absolute;
+    top: 12vh;
+    left:10vw;
+}
+#profile_month{
+    position:absolute;
+    top: 22vh;
+    left:10vw;
+}
+#profile_button{
+    position:absolute;
+    top:32vh;
+    left: 15vw;
+    width: 10vw;
+    background-color: #394549;
+    color:#f7a072;
+    height:4vh;
+}
+#p_header{
+    position:absolute;
+    top: 5vh;
+    left: 5vh;
+    font-size: 8vh;
+}
+.p_label{
+    position:absolute;
+    left: 5vh;
+    width: 15vw;
+    height: 6vh;
+    background-color: #394549;
+    font-size: xx-large;
+}
+.p_val{
+    position:absolute;
+    left: calc(10vh + 15vw);
+    width: 15vw;
+    height: 6vh;
+    background-color: #394549;
+    font-size: xx-large;
+    color:#f7a072
+}
+.text_anchor{
+    position:absolute;
+    height:2vh;
+    bottom:4vh;
+    left:1vh;
+    font-size: 4vh;
+}
+#p_username_label{
+    top: 20vh;
+}
+#p_username{
+    top: 20vh;
+}
+#p_birthMonth_label{
+    top: 31vh;
+}
+#p_birthMonth{
+    top: 31vh;
+}
+#p_birthYear_label{
+    top: 42vh;
+}
+#p_birthYear{
+    top: 42vh;
+}
+#p_wishlist_label{
+    top: 53vh;
+}
+#p_wishlist{
+    top: 53vh;
+}
+#p_stash_label{
+    top: 64vh;
+}
+#p_stash{
+    top: 64vh;
+}
+#p_stash_val_label{
+    top: 75vh;
+}
+#p_stash_val{
+    top: 75vh;
+}
+
+/* HEADER for resultsTemplate */
+#logo{
+    width: 10vh;
+    height: 10vh;
+    position: absolute;
+    top: 2vh;
+    left: 2vh;
+    background-image: url('./Photos/Icon.png');
+    background-position: center;
+    background-size: cover;
+    cursor:pointer;
+}
+#profile{
+    width: 8vh;
+    height: 8vh;
+    position: absolute;
+    top: 2vh;
+    right: 2vh;
+    background-image: url('./Photos/profile.png');
+    background-position: center;
+    background-size: cover;
+    cursor:pointer;
+}
+#collection{
+    width: 8vh;
+    height: 8vh;
+    position: absolute;
+    top: 2vh;
+    right: 14vh;
+    background-image: url('./Photos/Collection.png');
+    background-position: center;
+    background-size: cover;
+    cursor:pointer;
+}
+#wishlist{
+    width: 8vh;
+    height: 8vh;
+    position: absolute;
+    top: 2vh;
+    right: 26vh;
+    background-image: url('./Photos/Wishlist.png');
+    background-position: center;
+    background-size: cover;
+    cursor:pointer;
+}
+#addToDatabase{
+    width: 8vh;
+    height: 8vh;
+    position: absolute;
+    top: 2vh;
+    right: 38vh;
+    background-image: url('./Photos/Add-to-database.png');
+    background-position: center;
+    background-size: cover;
+    cursor:pointer;
+}
+#searchbar{
+    position: absolute;
+    height: 4vh;
+    width: calc(50vw - 54vh);
+    top: 6vh;
+    right: 54vh;
+    background-color: #475b63;
+    color: #f7a072;
+}
+#searchButton{
+    position: absolute;
+    height: 4vh;
+    width: 4vh;
+    top: 6vh;
+    right: 48vh;
+    background-color: #475b63;
+    background-image: url('./Photos/Search.png');
+    background-size: cover;
+    background-position: center;
+}
+/* #searchForm{
+    position: absolute;
+    height: 4vh;
+    top: 6vh;
+    width: calc(50vh - 48vh);
+    right: calc(50vh - 48vh);
+} */
+
+
+
+/* add_to_database */
+.content-section{
+    width:100vw;
+    top:0;
+    left:0;
+}
+.media{
+    width:100vw;
+    top:0;
+    left:0;
+}
+.atdbArt{
+    position:absolute;
+    height:80vh;
+    width: 80vh;
+    background-position: center;
+    background-size: cover;
+    top: 5vh;
+    left: 5vw;
+    border-color:#afc1d6;
+    border-width: 1vh;
+    border-style:groove;
+}
+.atdb_label{
+    position:absolute;
+    left: calc(80vh + 10vw);
+    color: #f7a072;
+    font-family: 'Pixel';
+    font-size: larger;
+}
+.atdb_field{
+    position:absolute;
+    left: calc(80vh + 10vw);
+    height: 4vh;
+    background-color: #394549;
+    width: 20vw;
+    color: #f7a072;
+    font-family: 'Pixel';
+}
+#atdb_image_label{
+    top: 20vh;
+}
+#atdb_image{
+    position:absolute;
+    top: 23vh;
+    left: calc(80vh + 10vw);
+    height: 4vh;
+    color:#f7a072;
+    /* background-color: #394549; */
+}
+#atdb_artist_label{
+    top: 32vh;
+}
+#atdb_artist{
+    top: 35vh;
+    color:#f7a072;
+}
+#atdb_album_label{
+    top: 44vh;
+}
+#atdb_album{
+    top: 47vh;
+}
+#atdb_year_label{
+    top: 56vh;
+}
+#atdb_year{
+    top: 59vh;
+}
+#atdb_button{
+    position:absolute;
+    top:80vh;
+    left: calc(80vh + 10vw);
+    width: 10vw;
+    background-color: #394549;
+    color:#f7a072;
+    height:4vh;
+}
+#atdb{
+    position: absolute;
+    left: calc(80vh + 10vw);
+    top: 5vh;
+    font-size: 8vh;
+    width: 30vw;
+}
+#atdb_format_label{
+    top: 68vh;
+}
+#atdb_format{
+    top: 71vh;
+}
+
+
+
+
+/* Results Template */
+.album_display{
+    position:absolute;
+    height: 14vh;
+    width:75vw;
+    background-color: #394549;
+    left: 5vw;
+}
+.album_display2{
+    position:absolute;
+    height: 14vh;
+    width:75vw;
+    background-color:#475b63;
+    left: 5vw;
+}
+.rt_art{
+    position:absolute;
+    top: 1vh;
+    left: 2vh;
+    height:12vh;
+    width: 12vh;
+    background-position: center;
+    background-size: cover;
+}
+.rt_artist{
+    position:absolute;
+    left: 16vh;
+    top: .5vh;
+    font-size: 4vh;
+    color:#f7a072;
+    
+}
+.rt_album{
+    position:absolute;
+    left: 16vh;
+    top: 4.5vh;
+    font-size: 3vh;
+}
+.rt_year{
+    position:absolute;
+    left: 16vh;
+    top: 7.5vh;
+    font-size: 2vh;
+}
+.rt_format{
+    position:absolute;
+    left: 16vh;
+    top: 9.5vh;
+    font-size: 2vh;
+}
+.rt_rating{
+    position:absolute;
+    left: 16vh;
+    top: 11.5vh;
+    font-size: 2vh;
+}
+.stash-btn{
+    position:absolute;
+    right: 2vh;
+    top:1vh;
+    height: 5vh;
+    width: 10vw;
+    background-color: #afc1d6;
+    color:#2e2c2f
+}
+.wishlist-btn{
+    position:absolute;
+    right: 2vh;
+    bottom:1vh;
+    height: 5vh;
+    width: 10vw;
+    background-color: #afc1d6;
+    color:#2e2c2f
+}
+.remove{
+    background-color: #f7a072;
+}
+
+#album_display1{
+    top:20vh;
+}
+#album_display2{
+    top:36vh;
+}
+#album_display3{
+    top:52vh;
+}
+#album_display4{
+    top:68vh;
+}
+#album_display5{
+    top:84vh;
+}
+#album_display6{
+    top:100vh;
+}
+#album_display7{
+    top:116vh;
+}
+#album_display8{
+    top:132vh;
+}
+#album_display9{
+    top:148vh;
+}
+#album_display10{
+    top:164vh;
+}
+.next{
+    position:absolute;
+    height: 4vh;
+    width: 4vh;
+    color:#f7a072;
+    background-color: #394549;
+    font-family: 'Pixel';
+    font-size: 2.5vh;
+    right:19.2vw;
+}
+.previous{
+    position:absolute;
+    height: 4vh;
+    width: 4vh;
+    color:#f7a072;
+    background-color: #394549;
+    font-family: 'Pixel';
+    font-size: 2.5vh;
+    right: calc(19.2vw + 6vh);
+
+}
+#next{
+    top: 180vh;
+}
+#prev1{
+    top: 36vh;
+}
+#prev2{
+    top: 52vh;
+}
+#prev3{
+    top: 68vh;
+}
+#prev4{
+    top: 84vh;
+}
+#prev5{
+    top: 100vh;
+}
+#prev6{
+    top: 116vh;
+}
+#prev7{
+    top: 132vh;
+}
+#prev8{
+    top: 148vh;
+}
+#prev9{
+    top: 164vh;
+}
+#prev10{
+    top: 180vh;
+}
+
+/* Add/Remove Stash/Wishlist */
+.atsArt{
+    position:fixed;
+    height:80vh;
+    width: 80vh;
+    background-position: center;
+    background-size: cover;
+    top: 5vh;
+    left: 5vw;
+    border-color:#afc1d6;
+    border-width: 1vh;
+    border-style:groove;
+}
+.ats_label{
+    position:absolute;
+    left: calc(80vh + 10vw);
+    color: #f7a072;
+    font-family: 'Pixel';
+    font-size:medium;
+}
+.ats_field{
+    position:absolute;
+    left: calc(80vh + 10vw);
+    height: 4vh;
+    background-color: #394549;
+    width: 20vw;
+    color: #f7a072;
+    font-family: 'Pixel';
+}
+#ats_artist{
+    position: absolute;
+    left: calc(80vh + 10vw);
+    top: 5vh;
+    font-size: 8vh;
+    width: 40vw;
+    color:#f7a072
+}
+#ats_album{
+    position: absolute;
+    left: calc(80vh + 10vw);
+    top: 13vh;
+    font-size: 6vh;
+    width: 30vw;
+}
+#ats_format{
+    position: absolute;
+    left: calc(80vh + 10vw);
+    top: 19vh;
+    font-size: 3vh;
+    width: 30vw;
+}
+#ats_package_label{
+    top:27vh;
+}
+#ats_package{
+    top:30vh;
+}
+#ats_media_label{
+    top:39vh;
+}
+#ats_media{
+    top:42vh;
+}
+#ats_resale_label{
+    top:51vh;
+}
+#ats_resale{
+    top:54vh;
+}
+#ats_overall_label{
+    top:63vh;
+}
+#ats_overall{
+    top:66vh;
+}
+#ats_production_label{
+    top:75vh;
+}
+#ats_production{
+    top:78vh;
+}
+#ats_musicianship_label{
+    top:87vh;
+}
+#ats_musicianship{
+    top:90vh;
+}
+#ats_songwriting_label{
+    top:99vh;
+}
+#ats_songwriting{
+    top:102vh;
+}
+#ats_vocals_label{
+    top:111vh;
+}
+#ats_vocals{
+    top:114vh;
+}
+#ats_lyrics_label{
+    top:123vh;
+}
+#ats_lyrics{
+    top:126vh;
+}
+#ats_genre_label{
+    top:135vh;
+}
+#ats_genre{
+    top:138vh;
+}
+#ats_subgenre_label{
+    top:147vh;
+}
+#ats_subgenre{
+    top:150vh;
+}
+#ats_button{
+    position:absolute;
+    top:159vh;
+    left: calc(80vh + 10vw);
+    width: 10vw;
+    background-color: #394549;
+    color:#f7a072;
+    height:4vh;
+}
+#atwl_artist{
+    position: absolute;
+    left: calc(80vh + 10vw);
+    top: 5vh;
+    font-size: 8vh;
+    width: 40vw;
+    color:#f7a072
+}
+#atwl_album{
+    position: absolute;
+    left: calc(80vh + 10vw);
+    top: 13vh;
+    font-size: 6vh;
+    width: 30vw;
+}
+#atwl_format{
+    position: absolute;
+    left: calc(80vh + 10vw);
+    top: 19vh;
+    font-size: 3vh;
+    width: 30vw;
+}
+#atwl_purchase_priority_label{
+    position:absolute;
+    top: 66vh;
+}
+#atwl_purchase_priority{
+    position:absolute;
+    top: 70vh;
+    display:flexbox;
+    width: 20vw;
+}
+.atwl_label{
+    color:#f7a072;
+    /* font-family: 'Pixel' */
+    font-size: 3vh;
+}
+#atwl_overall_label{
+    position:absolute;
+    top:25vh;
+    left: calc(80vh + 10vw);
+}
+#atwl_overall{
+    position:absolute;
+    top:29vh;
+    background-color: #394549;
+    height:5vh;
+    width:calc(calc(calc(80vw - 80vh) / 2) - 3vw);
+    left: calc(80vh + 10vw);
+}
+#atwl_production_label{
+    position:absolute;
+    top:25vh;
+    left: calc(calc(calc(80vh + 10vw) + calc(calc(calc(80vw - 80vh) / 2) - 3vw)) + 5vw);
+
+}
+#atwl_production{
+    position:absolute;
+    top:29vh;
+    background-color: #394549;
+    height:5vh;
+    width:calc(calc(calc(80vw - 80vh) / 2) - 3vw);
+    left: calc(calc(calc(80vh + 10vw) + calc(calc(calc(80vw - 80vh) / 2) - 3vw)) + 5vw);
+}
+#atwl_musicianship_label{
+    position:absolute;
+    top:37vh;
+    left: calc(80vh + 10vw);
+}
+#atwl_musicianship{
+    position:absolute;
+    top:41vh;
+    background-color:#475b63;
+    height:5vh;
+    width:calc(calc(calc(80vw - 80vh) / 2) - 3vw);
+    left: calc(80vh + 10vw);
+}
+#atwl_songwriting_label{
+    position:absolute;
+    top:37vh;
+    left: calc(calc(calc(80vh + 10vw) + calc(calc(calc(80vw - 80vh) / 2) - 3vw)) + 5vw);
+
+}
+#atwl_songwriting{
+    position:absolute;
+    top:41vh;
+    background-color: #475b63;
+    height:5vh;
+    width:calc(calc(calc(80vw - 80vh) / 2) - 3vw);
+    left: calc(calc(calc(80vh + 10vw) + calc(calc(calc(80vw - 80vh) / 2) - 3vw)) + 5vw);
+}
+#atwl_vocals_label{
+    position:absolute;
+    top:49vh;
+    left: calc(80vh + 10vw);
+}
+#atwl_vocals{
+    position:absolute;
+    top:53vh;
+    background-color: #394549;
+    height:5vh;
+    width:calc(calc(calc(80vw - 80vh) / 2) - 3vw);
+    left: calc(80vh + 10vw);
+}
+#atwl_lyrics_label{
+    position:absolute;
+    top:49vh;
+    left: calc(calc(calc(80vh + 10vw) + calc(calc(calc(80vw - 80vh) / 2) - 3vw)) + 5vw);
+
+}
+#atwl_lyrics{
+    position:absolute;
+    top:53vh;
+    background-color: #394549;
+    height:5vh;
+    width:calc(calc(calc(80vw - 80vh) / 2) - 3vw);
+    left: calc(calc(calc(80vh + 10vw) + calc(calc(calc(80vw - 80vh) / 2) - 3vw)) + 5vw);
+}
